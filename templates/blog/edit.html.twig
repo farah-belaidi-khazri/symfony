@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+{% form_theme editForm 'bootstrap_5_layout.html.twig' %}
+{% block title %}Edit Article{% endblock %}
+{% block body %}
+<style>
+
+     .articles{
+       border-radius:10px;
+       box-shadow: 0 4px 16px rgba(0,0,0,.25);
+       padding: 16px 20px; 
+
+    
+
+     }
+    
+    </style>
+<div class="container w-50">
+<div class="articles mt-5">
+<h4>  Edit   </h4>
+{{form_start(editForm)}}
+{{form_widget(editForm)}}
+
+
+<button class="btn btn-outline-success">Edit</button>
+
+{{form_end(editForm)}}
+</div>
+</div>
+{% endblock %}

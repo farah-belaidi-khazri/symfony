@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello BlogController!{% endblock %}
+
+{% block body %}
+    <style>
+
+     .articles{
+       border-radius:10px;
+       box-shadow: 0 4px 16px rgba(0,0,0,.25);
+       padding: 16px 20px; 
+
+    
+
+     }
+     img{
+      border-radius:10px;
+      box-shadow: 0 4px 16px rgba(0,0,0,.25);
+      margin:10px;
+    }
+</style>
+  {% for article in articles %}
+
+   <section class="articles mt-4">
+    <article class="mb-4">
+        <h2> {{article.title}} </h2>
+
+        <div class="metadata">
+           {{article.createdAt | date('d-m-y')}}     {{article.createdAt | date('h:i')}}
+          <span class="badge bg-danger"> {{article.category.title}}</span>
+          {% if article.user %}
+            <span class="badge bg-success"><strong>  {{article.user.firstName}}   {{article.user.lastName}}</strong></span>
+          {% endif %}
+        </div>
+        <div class="content">
+          <img src="{{article.image}}" alt="">
+          <p>  {{article.content}} </p>
+           <a class="btn btn-info" href="{{path('article_show',{'id': article.id })}}"> Read more  </a>
+        </div>
+    </article>
+    </section>
+   
+ {% endfor %}
+  <div class="navigation mt-4">
+     {{ knp_pagination_render(articles) }}
+  </div>
+{% endblock %}
